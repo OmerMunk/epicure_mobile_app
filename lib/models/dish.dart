@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import './restaurant.dart';
 
-class Dish {
+class Dish with ChangeNotifier {
+  String id;
   String name;
   String description;
   // final Restaurant? restaurant;
@@ -12,6 +13,7 @@ class Dish {
   bool isFavorite;
 
   Dish({
+    required this.id,
     required this.name,
     required this.description,
     // @required this.restaurant,
@@ -21,4 +23,9 @@ class Dish {
     this.signature = false,
     this.isFavorite = false,
   });
+
+  void toggleFavoriteStatus() {
+    isFavorite = !isFavorite;
+    notifyListeners();
+  }
 }
