@@ -10,6 +10,10 @@ class Dishes with ChangeNotifier {
     return [..._dishes];
   }
 
+  List<Dish> getDishesByMealTime(MealTime mealTime) {
+    return _dishes.where((dish) => dish.mealTime.contains(mealTime)).toList();
+  }
+
   Dish findById(String id) {
     return items.firstWhere((dish) => dish.id == id);
   }

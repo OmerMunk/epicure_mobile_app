@@ -1,4 +1,5 @@
 import '../models/dish.dart';
+import '../providers/dishes.dart';
 
 List<Dish> dummyDishes = [
   Dish(
@@ -9,7 +10,8 @@ List<Dish> dummyDishes = [
       image: "pad_ki_mao_3",
       price: 65,
       properties: ["spicy"],
-      isFavorite: true),
+      isFavorite: true,
+      mealTime: [MealTime.lunch, MealTime.dinner]),
   Dish(
       id: 'd2',
       name: "Garbanzo Frito",

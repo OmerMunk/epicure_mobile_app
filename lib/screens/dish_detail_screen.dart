@@ -25,7 +25,7 @@ class DishDetailScreen extends StatelessWidget {
           Stack(
             children: <Widget>[
               Image.asset(
-                'assets/images/${dish.image}.png',
+                'assets/images/dishes/${dish.image}.png',
                 alignment: Alignment.topCenter,
                 // fit: BoxFit.fi,
                 height: (mediaQuery.size.height -

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_svg/parser.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import '../models/dish.dart';
 import '../screens/dish_detail_screen.dart';
+
+const String assetName = 'assets/images/logos/ils.svg';
 
 class DishItem extends StatelessWidget {
   @override
@@ -10,6 +15,7 @@ class DishItem extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
     return GestureDetector(
       onTap: () {
+        print(dish.mealTime);
         Navigator.of(context)
             .pushNamed(DishDetailScreen.routeName, arguments: dish.id);
       },
@@ -21,11 +27,12 @@ class DishItem extends StatelessWidget {
             horizontal: mediaQuery.size.width * 0.053),
         color: Theme.of(context).colorScheme.secondary,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Stack(
               children: <Widget>[
                 Image.asset(
-                  'assets/images/${dish.image}.png',
+                  'assets/images/dishes/${dish.image}.png',
                   fit: BoxFit.fitWidth,
                   height: mediaQuery.size.height * 0.25,
                   width: double.infinity,
@@ -68,6 +75,42 @@ class DishItem extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+              child: IntrinsicHeight(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Flexible(
+                      fit: FlexFit.loose,
+                      flex: 1,
+                      child: SvgPicture.asset(
+                        assetName,
+                      ),
+                    ),
+                    Flexible(
+                      fit: FlexFit.loose,
+                      flex: 3,
+                      child: Text(
+                        dish.price.toString(),
+                        style: Theme.of(context).textTheme.headline3,
+                      ),
+                    ),
+                    const Flexible(
+                      fit: FlexFit.loose,
+                      flex: 15,
+                      child: Divider(
+                        thickness: 1,
+                        indent: 16,
+                        endIndent: 16,
+                        color: Color.fromRGBO(151, 151, 151, 1),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
